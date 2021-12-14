@@ -17,11 +17,14 @@
   
 
 ## 사용한 기술 스택
-- Python, Jupyter Notebook
+
+- Python
 - Pytorch, Tensorflow
-- Git, Goole Colab
+- Goole Colab, Jupyter Notebook
 - Google Cloud Platform
-- Flask, mongoDB
+- Git
+- Flask, Bootstrap 
+- RestAPI, MongoDB
 
 
 ## tokenize_google_crawling
