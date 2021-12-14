@@ -135,8 +135,8 @@ tokenize_sentences('주유카드 비치완료')
 
 data['tokenized_summary'] = data['tokenized_summary'].map(lambda x: detokenize_setences(x, nouns))
 
-detokenize_setences('현장 방문 오작동 발견,네비게이션 정상 작동 확인', nouns)
-# ['현장방문 오작동 발견,네비게이션 정상작동확인']
+detokenize_setences(['현장 방문 오작동 발견', '네비게이션 정상 작동 확인'], nouns)
+# ['현장방문 오작동 발견', '네비게이션 정상작동확인']
 
 ```
 
