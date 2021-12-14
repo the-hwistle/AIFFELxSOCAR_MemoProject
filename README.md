@@ -17,10 +17,14 @@
   
 
 ## 사용한 기술 스택
+- Python, Jupyter Notebook
+- Pytorch, Tensorflow
+- Git, Goole Colab
+- Google Cloud Platform
+- Flask, mongoDB
 
 
-## 
-
+## tokenize_google_crawling
 
 ## 시연
 ![시연결과](https://user-images.githubusercontent.com/63278762/145804249-70e3d9af-3422-4c52-b452-f9fa5581f555.gif)
