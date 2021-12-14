@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Portfolio</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../static/css/styles.css">
+  <link href="https://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('body').on('click', 'description', function () {
+        textarea_Click(this);
+      });
+      $('#myform').on('submit', function (e) {
+        e.preventDefault();
+        initialize_classify();
+        $('body').addClass('busy');
+        classify_Click(this)
+
+
+      });
+    });
+
+    $("#description").click(function () {
+      textarea_Click(this)
+    });
+    $('#myform').submit(function () {
+      e.preventDefault();
+      initialize_classify();
+      $('body').addClass('busy');
+      classify_Click(this)
+    })
+
+    function initialize_classify() {
+      var classify_script = "";
+      $("#classifylist").html(classify_script);
+    }
+
+    function classify_Click(e) {
+      var description = $('#description').val();
+      if (description === "")
+        return;
+
+
+      $.ajax({
+        url: '/classify',
+        type: 'POST',
+        data: JSON.stringify({
+          description: description
+        }),
+        dataType: "json",
+        contentType: "application/json",
+        success: function (data) {
+          var classify_script = "";
+          data = data["result"]
+          for (i = 0; i < data.length; i++) {
+            var v = data[i];
+            classify_script += '<input type="checkbox" class="btn-check" name="options" id="option' + (i + 1) +
+              '" autocomplete="off">'
+            classify_script += '<label class="btn btn-outline-primary mb-1" for="option' + (i + 1) + '">' + v +
+              '</label>'
+          }
+          $("#classifylist").html(classify_script);
+          $('body').removeClass('busy');
+        },
+        error: function (xtr, status, error) {
+          console.log(xtr + ":" + status + ":" + error);
+          $('body').removeClass('busy');
+        }
+      });
+    }
+
+
+    function word_click(origin, new_text) {
+      var description = document.getElementById('description');
+      var startindex = description.selectionStart;
+      var endindex = description.selectionEnd;
+      description.focus();
+      description.setRangeText(new_text, startindex, endindex, 'end');
+    }
+
+    function textarea_Click(e) {
+      var text = e.value;
+      if (text === "")
+        return;
+
+      var caret = getCaretPosition(e);
+      startindex = getCaretIndex(text, caret)
+
+      const description = document.getElementById('description');
+      description.focus();
+      description.setSelectionRange(startindex, caret);
+      var word = description.value.substring(startindex, caret);
+      console.log(word)
+      if (word === "") {
+        return;
+      }
+      $.ajax({
+        type: "POST",
+        url: "/word",
+        contentType: "application/json",
+        data: JSON.stringify({
+          word: word
+        }),
+        dataType: "json",
+        success: function (wordlist) {
+          var wordlist_script = "";
+          var items = Object.keys(wordlist).map(function (key) {
+            return [key, wordlist[key]];
+          });
+
+          // Sort the array based on the second element
+          items.sort(function (first, second) {
+            return second[1] - first[1];
+          });
+          if (items.length == 0) {
+            return;
+          }
+          wordlist_script += '<ul class="list-group list-group-horizontal">';
+          for (i = 0; i < items.length; i++) {
+            if (i >= 5) {
+              break
+            }
+            var v = items[i][0];
+            var w = items[i][1];
+            wordlist_script +=
+              '<button type="button" class="list-group-item list-group-item-action" onclick=word_click("' +
+              word + '","' + v + '")>' +
+              v +
+              '</button>';
+          }
+          wordlist_script += '</ul>'
+          $("#wordlist").html(wordlist_script);
+        },
+        error: function (xtr, status, error) {
+          console.log(xtr + ":" + status + ":" + error);
+          var wordlist_script = "";
+          $("#wordlist").html(wordlist_script);
+        }
+      });
+    }
+
+    function getCaretIndex(text, caret) {
+      caret = caret - 1
+      while (true) {
+        char = text.charAt(caret)
+
+        if (caret <= 0)
+          return
+
+        if (char == " ")
+          return caret + 1
+
+        caret--;
+      }
+      return caret
+    }
+
+    function getCaretPosition(textarea) {
+      if (textarea.selectionStart) {
+        return textarea.selectionStart;
+      } else {
+        // TODO: Handle IE ugliness on your own :)
+        return 0;
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <!-- navigation bar -->
+  <div class="navbar">
+    <img src="../static/images/profile_img.png" width="34" height="34">
+    <ul class="menu-right">
+      <li><button id="about-btn">About</button>
+    </ul>
+  </div>
+
+  <section class="header">
+    <div class="helper"></div>
+    <div class="vertical-center">
+      <h1>제목은 쏘카 차량정비 검색창이라고 하겠습니다</h1>
+      <h2>근데 이제 자동완성 기능을 곁들인 :)</h2>
+    </div>
+  </section>
+
+  <!-- contact me -->
+  <section class="about contact">
+    <div class="helper"></div>
+    <main class="vertical-center container-fluid px-3 " style="width:70%;">
+      <h3 class="text-center">아이카센터</h3>
+      <p class="text-center">언제든지 편하게 검색해주세요. 감사합니다!</p>
+      <form action="home" id="myform" style="width:100% !important;">
+        <div class="row g-3 align-items-center">
+          <div class="col-8 form-floating">
+            <textarea class="form-control" type="text" id="description" name="description"
+              style="height:222px;"></textarea>
+            <label for="description" style="color: black;">정비 메모</label>
+            <script type="text/javascript">
+              $("#description").click(function () {
+                textarea_Click(this)
+              });
+            </script>
+          </div>
+          <div class="col-4">
+            <div style="height:222px;" class="text-center">
+              <div id="spinner" class="spinner m-5">
+                <div class="spinner-border text-dark" role="status" aria-hidden="true">
+                  <span class="sr-only"></span>
+                </div>
+              </div>
+              <div id="classifylist" class="d-inline-flex flex-wrap justify-content-around w-100">
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row pt-2">
+          <div class="col-6">
+            <div id="wordlist">
+
+            </div>
+          </div>
+          <div class="col-2">
+            <input type="submit" value="확인" class="btn btn-primary">
+          </div>
+        </div>
+
+        </div>
+      </form>
+    </main>
+  </section>
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="../static/js/script.js"></script>
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="../static/bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
