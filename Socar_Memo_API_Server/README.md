@@ -33,7 +33,7 @@ python3 api.py
 import requests
 import json
 
-res  = requests.get("http://34.132.153.232:5000/vocab/search?word=쏘나타")
+res  = requests.get("[GCP URL]/vocab/search?word=쏘나타")
 # 쏘나타에 원하는 단어 입력
 # 단, 단어 사전에 없으면 서칭해야할 단어로 옮겨짐
 dict_test = json.loads(res.content.decode('unicode-escape'))
@@ -55,7 +55,7 @@ import requests
 import json
 import re
 
-res  = requests.get("http://34.132.153.232:5000/crawling/google?p=요소수")
+res  = requests.get("[GCP URL]/crawling/google?p=요소수")
 data = res.content.decode('unicode-escape')
 result = []
 # 이 과정을 통해 str list로 만듦
@@ -71,7 +71,7 @@ import requests
 import json
 import re
 
-res  = requests.get("http://34.132.153.232:5000/crawling/naver?p=요소수")
+res  = requests.get("[GCP URL]/crawling/naver?p=요소수")
 data = res.content.decode('unicode-escape')
 result = []
 # 이 과정을 통해 str list로 만듦
@@ -88,7 +88,7 @@ for text in data.split("\","):
 import requests
 import json
 
-res  = requests.get("http://34.132.153.232:5000/classify?desc=내용")
+res  = requests.get("[GCP URL]/classify?desc=내용")
 
 result_list = json.loads(res.content.decode('unicode-escape'))
 result_list
