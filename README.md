@@ -28,7 +28,11 @@
   [![Tech Blog Badge](http://img.shields.io/badge/-Github-black?style=flat-square&logo=github&link=https://github.com/kwansu)](https://github.com/kwansu)    
 * 김영협  
   [![Tech Blog Badge](http://img.shields.io/badge/-Github-black?style=flat-square&logo=github&link=https://github.com/KimYoungHyeop)](https://github.com/KimYoungHyeop) [![Blog Badge](http://img.shields.io/badge/-Blog-EF2D5E?style=flat-square&logo=GitHub%20Sponsors&logoColor=white&link=https://blog.naver.com/kyh568)](https://blog.naver.com/kyh568)
-  
+
+
+## Project milestone
+![image](https://user-images.githubusercontent.com/15683086/145957157-2eca0062-8f71-4934-bb50-a0222a14d675.png)
+
 
 ## 사용한 기술 스택
 
