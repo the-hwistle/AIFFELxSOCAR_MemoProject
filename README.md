@@ -124,7 +124,7 @@ len(label_set)
 
 띄어쓰기 된 어절을 붙였을 때, 그 결과가 키워드 사전에 존재한다면, 두 어절을 붙인다.
 
-이 과정을 통해 군집화 성능을 높일 수 있었다.
+이 과정은 군집화 성능을 높인다.
 
 ```python
 data['tokenized_summary']= data['labeled'].apply(tokenize_sentences)
