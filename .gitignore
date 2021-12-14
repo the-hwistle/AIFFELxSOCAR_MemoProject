@@ -130,7 +130,3 @@ dmypy.json
 
 # chrome driver
 chromedriver
-
-/data/FastTextModel
-/Vocabulary_API/common/kodex.py
-Nouns/
