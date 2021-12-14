@@ -33,3 +33,8 @@
 <img width="1440" alt="스크린샷 2021-12-14 오후 12 05 47" src="https://user-images.githubusercontent.com/63278762/145925927-19070398-e2f7-4c19-8d86-0f67aa04d0ba.png">
 
 ## Reference
+* [LR-NounsExtrator](https://lovit.github.io/nlp/2018/04/09/three_tokenizers_soynlp/)
+* [KR-WordRank](https://lovit.github.io/nlp/2018/04/16/krwordrank/)
+* [Jaccard Similarity](https://wikidocs.net/24654)
+* [자모 분리 및 결합](https://needjarvis.tistory.com/627)
+* [한국어 단어 자동완성 시스템의 성능 분석 및 새로운 평가 방법](http://koreascience.kr/article/JAKO201525249160709.pdf)
