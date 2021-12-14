@@ -1,0 +1,229 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Noto Sans KR', sans-serif;
+  min-width: 768px;
+}
+
+/* navbar */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  padding: 0 60px;
+}
+
+.navbar img {
+  vertical-align: middle;
+}
+
+.navbar .menu-right {
+  float: right;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.navbar .menu-right li {
+  float: left;
+}
+
+.navbar .menu-right li button {
+  color: white;
+  font-size: 16px;
+  font-weight: 300;
+  text-decoration: none;
+  transition: color 1s;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.navbar .menu-right li:last-child {
+  margin-left: 30px;
+}
+
+/* vertical center */
+
+.helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.vertical-center {
+  display: inline-block;
+  vertical-align: middle;
+  color: white;
+  opacity: 0;
+  position: relative;
+  top: 100px;
+}
+
+/* header */
+
+.header {
+  background-image: url('../images/car_repairing.jpeg');
+  background-size: cover;
+  background-position: center center;
+  height: 100vh;
+  min-height: 600px;
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 40px;
+  margin: 0;
+  margin-bottom: 33px;
+}
+
+.header h2 {
+  font-size: 20px;
+  margin: 0;
+  font-weight: normal;
+}
+
+/* about */
+
+.about {
+  height: 100vh;
+  min-height: 600px;
+  text-align: center;
+}
+
+.about h3 {
+  font-size: 40px;
+  color: #4a4a4a;
+  margin: 0;
+  margin-bottom: 37px;
+}
+
+.about p {
+  font-size: 16px;
+  color: #4a4a4a;
+  margin: 0;
+  margin-bottom: 61px;
+}
+
+.about .skillset {
+  display: inline-block;
+}
+
+.about .skill:not(:last-child) {
+  margin-bottom: 17px;
+}
+
+.about .skill .title {
+  display: inline-block;
+  width: 50px;
+  vertical-align: middle;
+  margin-right: 15px;
+  font-size: 16px;
+  color: #4a4a4a;
+}
+
+.about .skill .bar {
+  display: inline-block;
+  vertical-align: middle;
+  width: 646px;
+  height: 33px;
+  border-radius: 25px;
+  background-color: #f9f9f9;
+  position: relative;
+  line-height: 33px;
+}
+
+.about .skill .bar .inner-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /*width: 50%;*/
+  height: 33px;
+  background: #bbe6ff;
+  border-radius: 25px;
+}
+
+.about .skill .bar .percentage {
+  font-size: 14px;
+  color: #9b9b9b;
+  position: absolute;
+  right: 20px;
+  top: 0;
+}
+
+/* contact */
+
+.contact {
+  height: 100vh;
+  min-height: 600px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.contact h3 {
+  font-size: 40px;
+  color: #4a4a4a;
+  margin: 0;
+  margin-bottom: 37px;
+}
+
+.contact p {
+  font-size: 16px;
+  color: #4a4a4a;
+  margin: 0;
+  margin-bottom: 61px;
+}
+
+.contact form {
+  display: inline-block;
+  vertical-align: middle;
+  width: 646px;
+}
+
+.contact input,
+.contact textarea {
+  display: block;
+  width: 100%;
+  border-radius: 4px;
+  border: solid 1px #ebebeb;
+  font-size: 16px;
+  padding: 10px 30px;
+}
+
+/* .contact input {
+    margin-bottom: 24px;
+  } */
+
+.contact textarea {
+  resize: none;
+  height: 222px;
+}
+
+.hero-header .info a {
+  font-size: 32px;
+  background-color: white;
+  color: #464273;
+  padding: 10px 40px;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: right;
+}
+
+/* spinner*/
+
+#spinner {
+  display: none;
+}
+
+body.busy .spinner {
+  display: block !important;
+}
