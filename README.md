@@ -31,7 +31,7 @@
 
 
 ## Project milestone
-![image](https://user-images.githubusercontent.com/15683086/145957157-2eca0062-8f71-4934-bb50-a0222a14d675.png)
+![ppt_milestone](https://user-images.githubusercontent.com/15683086/145965057-f6164f19-3c15-4b42-820a-332d19ca1236.png)
 
 
 ## 사용한 기술 스택
