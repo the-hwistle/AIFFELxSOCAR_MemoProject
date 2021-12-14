@@ -43,6 +43,20 @@ create_continuous_likely_dict(searcher, s)
 #  10: [('발생건', 0)]}
 ```
 
+tokenize_all_case로 토큰화(가능한 조합들을 생성해 낸다.)
+```
+tokenize_all_case(searcher, '정지에서출발할때떨림발생건')
+
+# [(정지,에서,출발,할,때,떨림,발생건), (정지,에서,출발,할때,떨림,발생건)]
+```
+
+extract_nouns함수로 명사추출
+```
+extract_nouns(searcher, '정지에서출발할때떨림발생건')
+
+# 정지, 출발, 때, 발생건
+```
+
 
 ## 시연
 ![시연결과](https://user-images.githubusercontent.com/63278762/145804249-70e3d9af-3422-4c52-b452-f9fa5581f555.gif)
