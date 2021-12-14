@@ -10,6 +10,11 @@
 
 <br>
 
+## 포스터
+![해커톤3_최종발표_포스터_아이카센터](https://user-images.githubusercontent.com/42146731/145956117-fbe2bb61-fa36-405d-88db-e8c49a10bfc0.jpg)
+
+<
+
 ## 구성원 및 역할
 
 * 최혜림  
