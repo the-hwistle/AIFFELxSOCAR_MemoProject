@@ -45,11 +45,11 @@
 - RestAPI, MongoDB
 
 
-## 크롤링을 톨한 tokenize and extract noun
+## 크롤링을 통한 Tokenize and Extract nouns
 구글 크롤링을 통해 여러 단어가 조합된 조합어를 토큰화 및 명사 추출한다.  
 
 google searcher를 이용해 크롤링된 결과를 바탕으로 조합을 만든다.
-```
+```python
 s = '정지에서출발할때떨림발생건'
 searcher = GoogleSearcher()
 create_continuous_likely_dict(searcher, s)
@@ -65,19 +65,128 @@ create_continuous_likely_dict(searcher, s)
 ```
 
 tokenize_all_case로 토큰화(가능한 조합들을 생성해 낸다.)
-```
+```python
 tokenize_all_case(searcher, '정지에서출발할때떨림발생건')
 
 # [(정지,에서,출발,할,때,떨림,발생건), (정지,에서,출발,할때,떨림,발생건)]
 ```
 
 extract_nouns함수로 명사추출
-```
+```python
 extract_nouns(searcher, '정지에서출발할때떨림발생건')
 
 # 정지, 출발, 때, 발생건
 ```
+## Category Extraction & Recategorization
 
+### 0. Preprocess & Separate Sentences
+
+전처리 후 \[SEP] token을 사용하여 문장을 의미 단위로 분리한다.
+
+### 1.  Tokenize with SentencePiece 
+
+전문용어를 잘 분절하는 SentencePiece를 사용한다.  Corpus에 의존적이므로 일반적인 한국어 Corpus와 다른 분포를 가져도 subword 분절이 잘 이루어진다. 
+
+```python
+# SentencePiece Model 학습
+spm_train('preprocessed.txt', 'labeling', MAX_VOCAB_SIZE)
+```
+
+```python
+sp_0 = spm.SentencePieceProcessor()
+vocab_file = spm_path + '/labeling.model'
+sp_0.load(vocab_file)
+```
+
+### 2. Extract summarized sentences
+
+```python
+# 단일 스트링에 대한 결과
+s = '신규 충전카드 비치하였고 배터리 오프[SEP] 점프 완료'
+labeling(s)
+
+# ['신규 충전카드 비치  배터리 오프', '점프 완료']
+```
+
+Tokenization 결과 점수가 높고, 두 글자 이상인 의미있는 token으로 문장을 요약한다.
+
+```python
+# DataFrame에 적용
+data, cnt, label_list, label_set = label_and_count(data)
+len(label_set)
+
+# 9597개의 서로 다른 요약문을 얻었다
+```
+
+### 3. Tokenize(split) & Detokenize(join) summarized results
+
+띄어쓰기에 대해 강건하게 만들기 위해 웹 크롤링을 통해 띄어쓰기를 수행한다.
+
+띄어쓰기 된 어절을 붙였을 때, 그 결과가 키워드 사전에 존재한다면, 두 어절을 붙인다.
+
+이 과정은 군집화 성능을 높인다.
+
+```python
+data['tokenized_summary']= data['labeled'].apply(tokenize_sentences)
+data
+
+tokenize_sentences('주유카드 비치완료')
+# ['주유 카드 비치완료']
+
+data['tokenized_summary'] = data['tokenized_summary'].map(lambda x: detokenize_setences(x, nouns))
+
+detokenize_setences('현장 방문 오작동 발견,네비게이션 정상 작동 확인', nouns)
+# ['현장방문 오작동 발견,네비게이션 정상작동확인']
+
+```
+
+### 4. Clustering
+
+의미가 유사한 요약문을 묶어 재분류 카테고리로 사용할 수 있는 핵심 label을 추출하고,  출현 빈도를 기준으로 필터링한다. 핵심 label 중 의미가 너무 포괄적이거나 불필요한 경우는 핵심 label이 될 수 없도록 한다.
+
+```python
+# 과정 3을 거친 서로 다른 요약문의 개수
+len(freq_tk)
+# 8942
+
+# 의미상 핵심 label이 될 수 있는 서로 다른 요약문의 개수
+len(freq_tk_ls)
+# 8231
+
+new_category = {}
+temp = dict(group_duplicated_word_tk(set(freq_tk_ls)))
+[print(key,':',value) for key,  value in temp.items()]
+for k, v in temp.items():
+    if v:
+        new_category[v[0][0]] = [x[0] for x in v]
+
+# 합계 출현 횟수 20을 기준으로
+# 핵심 label 885가지 중 238가지가 카테고리로 선택되었다.
+
+# 신규 카테고리 출력
+print(new_cateory.keys())
+# dict.keys(['CSA', '전우 타이어교환', '메모리카드', '하이패스카드', '에어컨필터', ...])
+```
+
+### 5. Recategorize with new category
+
+신규 카테고리를 적용한다. 
+
+`get_category`: 요약문이 신규 카테고리를 포함하면 해당 label을 적용한다.
+
+`rm_duplicate_v2`:  중복되는 label을 제거한다.
+
+```python
+data['new_inspect_type'] = data['tokenized_summary'].apply(get_category)
+
+data['new_inspect_type'] = data['new_inspect_type'].apply(rm_duplicate_v2)
+
+get_category(['후 디스크교환'])
+# [['디스크', '디스크교환']]
+
+rm_duplicate_v2([['디스크', '디스크교환']])
+# [['디스크교환']]
+```
 
 ## 시연
 ![시연결과](https://user-images.githubusercontent.com/63278762/145804249-70e3d9af-3422-4c52-b452-f9fa5581f555.gif)
