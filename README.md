@@ -1,0 +1,1 @@
+# AIFFELxSOCAR_MemoProject
