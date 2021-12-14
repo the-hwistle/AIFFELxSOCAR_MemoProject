@@ -24,7 +24,25 @@
 - Flask, mongoDB
 
 
-## tokenize_google_crawling
+## 크롤링을 톨한 tokenize and extract noun
+구글 크롤링을 통해 여러 단어가 조합된 조합어를 토큰화 및 명사 추출한다.  
+
+google searcher를 이용해 크롤링된 결과를 바탕으로 조합을 만든다.
+```
+s = '정지에서출발할때떨림발생건'
+searcher = GoogleSearcher()
+create_continuous_likely_dict(searcher, s)
+
+# 정지에서출발할때떨림발생건
+# {0: [('정지', 6)],
+#  2: [('에', 6), ('에서', 6)],
+#  4: [('출발', 8)],
+#  6: [('할', 4), ('할때', 1)],
+#  7: [('때', 4)],
+#  8: [('떨림', 5)],
+#  10: [('발생건', 0)]}
+```
+
 
 ## 시연
 ![시연결과](https://user-images.githubusercontent.com/63278762/145804249-70e3d9af-3422-4c52-b452-f9fa5581f555.gif)
