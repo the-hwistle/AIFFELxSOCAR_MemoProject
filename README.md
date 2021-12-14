@@ -4,7 +4,19 @@
 
 ## 구성원 및 역할
 
+* 최혜림  
+  [![Tech Blog Badge](http://img.shields.io/badge/-Github-black?style=flat-square&logo=github&link=https://github.com/hyelimchoi1223)](https://github.com/hyelimchoi1223)  
+* 윤세휘  
+  [![Tech Blog Badge](http://img.shields.io/badge/-Github-black?style=flat-square&logo=github&link=https://github.com/Beatriz-Yun)](https://github.com/Beatriz-Yun)  
+* 안형준  
+  [![Tech Blog Badge](http://img.shields.io/badge/-Github-black?style=flat-square&logo=github&link=https://github.com/hjkornn-phys)](https://github.com/hjkornn-phys)   
+* 신관수  
+  [![Tech Blog Badge](http://img.shields.io/badge/-Github-black?style=flat-square&logo=github&link=https://github.com/kwansu)](https://github.com/kwansu)    
+* 김영협  
+  [![Tech Blog Badge](http://img.shields.io/badge/-Github-black?style=flat-square&logo=github&link=https://github.com/KimYoungHyeop)](https://github.com/KimYoungHyeop)
+
 ## 사용한 기술 스택
+
 
 ## 
 
