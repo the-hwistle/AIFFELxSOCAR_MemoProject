@@ -6,6 +6,7 @@
 <br>
 
 ## 프로젝트 요약
+
 이 프로젝트는 모두의연구소 산하 교육기관 **AIFFEL**과 카셰어링 기업 **SOCAR**가 협력하여 진행한 해커톤에서 아이카센터 팀이 SOCAR로부터 제공받은 정비 메모 데이터를 활용하여 주어진 문제를 해결한 프로젝트입니다.
 
 <br>
@@ -13,7 +14,7 @@
 ## 포스터
 ![해커톤3_최종발표_포스터_아이카센터](https://user-images.githubusercontent.com/42146731/145956628-6b7505c1-cc42-4516-a0b6-0145a091bfe6.jpg)
 
-<
+<br>
 
 ## 구성원 및 역할
 
@@ -30,11 +31,14 @@
   
 
 ## 사용한 기술 스택
-- Python, Jupyter Notebook
+
+- Python
 - Pytorch, Tensorflow
-- Git, Goole Colab
+- Goole Colab, Jupyter Notebook
 - Google Cloud Platform
-- Flask, mongoDB
+- Git
+- Flask, Bootstrap 
+- RestAPI, MongoDB
 
 
 ## 크롤링을 톨한 tokenize and extract noun
