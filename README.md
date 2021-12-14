@@ -11,7 +11,7 @@
 <br>
 
 ## 포스터
-![해커톤3_최종발표_포스터_아이카센터](https://user-images.githubusercontent.com/42146731/145956117-fbe2bb61-fa36-405d-88db-e8c49a10bfc0.jpg)
+![해커톤3_최종발표_포스터_아이카센터](https://user-images.githubusercontent.com/42146731/145956628-6b7505c1-cc42-4516-a0b6-0145a091bfe6.jpg)
 
 <
 
