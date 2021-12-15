@@ -12,8 +12,7 @@
 <br>
 
 ## 포스터
-![해커톤3_최종발표_포스터_아이카센터](https://user-images.githubusercontent.com/42146731/145956628-6b7505c1-cc42-4516-a0b6-0145a091bfe6.jpg)
-
+![해커톤3_최종발표_포스터_아이카센터](https://user-images.githubusercontent.com/59644774/146108530-a0be415b-d5dc-4ecf-bba0-b7557071b7df.png)
 <br>
 
 ## 구성원 및 역할
