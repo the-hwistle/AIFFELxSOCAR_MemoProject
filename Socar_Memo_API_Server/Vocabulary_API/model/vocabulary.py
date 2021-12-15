@@ -46,7 +46,6 @@ class Search(Resource):
             find_result = self.vocabulary.find_start_with_vocabulary(word)
             if isinstance(find_result, list):
                 recommendation = {r["node"]: 9999 for r in find_result}
-
                 if len(find_result) < 3:
                     subword = []
                     for fr in find_result:
@@ -63,14 +62,15 @@ class Search(Resource):
                 # 단어 유사도 계산 후 출력
                 bg_word = Bigram(word)
                 words = self.vocabulary.find_query({"bg": {"$in": bg_word.bg}})
-                recommendation = {}
+                recommendation = []
                 for w in words:
                     similarity = len([m for m in bg_word.bg if m in w["bg"]]) / len(
                         w["bg"]
                     )
 
                     if similarity >= 0.8:
-                        recommendation[w["node"]] = similarity
+                        recommendation.append((w["node"], similarity))
+                        # recommendation[w["node"]] = similarity
 
                 if len(recommendation) < 2:
                     # unknown Word 추가
