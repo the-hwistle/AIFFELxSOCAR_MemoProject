@@ -113,6 +113,9 @@ extract_nouns(searcher, '정지에서출발할때떨림발생건')
 
 ## Category Extraction & Recategorization
 
+![토큰화_과정](https://user-images.githubusercontent.com/59644774/146131448-15944e16-e5b1-47b2-a884-495b80134f9a.png)
+
+
 ### 0. Preprocess & Separate Sentences
 
 전처리 후 \[SEP] token을 사용하여 문장을 의미 단위로 분리한다.
@@ -201,6 +204,8 @@ for k, v in temp.items():
 print(new_cateory.keys())
 # dict.keys(['CSA', '전우 타이어교환', '메모리카드', '하이패스카드', '에어컨필터', ...])
 ```
+
+![클러스터링_결과](https://user-images.githubusercontent.com/59644774/146131164-e7b30932-3423-424b-beaa-7086da75c2db.png)
 
 ### 5. Recategorize with new category
 
