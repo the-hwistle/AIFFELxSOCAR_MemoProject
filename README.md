@@ -57,7 +57,7 @@
   - 단어 임베딩 후 유사도 테스트
   - 문장 토크나이저 개발 및 명사 추출
   - 키워드 사전 구축
-  - 카테고리 분류 모뎅(Transformer, BERT) 구성
+  - 카테고리 분류 모델(Transformer, BERT) 구성
   
 * 김영협  
   [![Tech Blog Badge](http://img.shields.io/badge/-Github-black?style=flat-square&logo=github&link=https://github.com/KimYoungHyeop)](https://github.com/KimYoungHyeop) [![Blog Badge](http://img.shields.io/badge/-Blog-EF2D5E?style=flat-square&logo=GitHub%20Sponsors&logoColor=white&link=https://blog.naver.com/kyh568)](https://blog.naver.com/kyh568)
