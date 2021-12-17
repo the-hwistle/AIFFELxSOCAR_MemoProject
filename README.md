@@ -19,14 +19,53 @@
 
 * 최혜림  
   [![Tech Blog Badge](http://img.shields.io/badge/-Github-black?style=flat-square&logo=github&link=https://github.com/hyelimchoi1223)](https://github.com/hyelimchoi1223)  [![Blog Badge](http://img.shields.io/badge/-Blog-EF2D5E?style=flat-square&logo=GitHub%20Sponsors&logoColor=white&link=https://hyelimchoi1223.github.io/)](https://hyelimchoi1223.github.io/)
+  
+  
+  - 팀장
+  - 단어장 DB 구성
+  - 크롤링 모듈 구현
+  - 자동완성 모듈 구현
+  - API 배포 및 개발
+  - 윕 페이지 개발 및 배포
+  
 * 윤세휘  
   [![Tech Blog Badge](http://img.shields.io/badge/-Github-black?style=flat-square&logo=github&link=https://github.com/Beatriz-Yun)](https://github.com/Beatriz-Yun)    [![Blog Badge](http://img.shields.io/badge/-Blog-EF2D5E?style=flat-square&logo=GitHub%20Sponsors&logoColor=white&link=https://beatriz-yun.github.io/)](https://beatriz-yun.github.io/)
+  
+  
+  - 데이터 전처리
+  - 명사추출
+  - 카테고리 재정의
+  - 카테고리 분류 모델
+  - 데이터 불균형 해소 (마르코프 체인)
+  - 웹 서버 기본 세팅
+  
 * 안형준  
   [![Tech Blog Badge](http://img.shields.io/badge/-Github-black?style=flat-square&logo=github&link=https://github.com/hjkornn-phys)](https://github.com/hjkornn-phys)     [![Blog Badge](http://img.shields.io/badge/-Blog-EF2D5E?style=flat-square&logo=GitHub%20Sponsors&logoColor=white&link=https://velog.io/@gibonki77)](https://velog.io/@gibonki77)
+  
+  
+  - 카테고리 재정의 아이디어 및 구현
+  - SPM으로 정비 용어 필터링 & 문장 분리
+  - 요약된 문장 군집화 아이디어 및 구현
+  - 신규 라벨 재정의
+  - 카테고리 분류 모듈 구현
+  
 * 신관수  
-  [![Tech Blog Badge](http://img.shields.io/badge/-Github-black?style=flat-square&logo=github&link=https://github.com/kwansu)](https://github.com/kwansu)    
+  [![Tech Blog Badge](http://img.shields.io/badge/-Github-black?style=flat-square&logo=github&link=https://github.com/kwansu)](https://github.com/kwansu)
+  
+  
+  - 데이터 전처리(문장 정제)
+  - 단어 임베딩 후 유사도 테스트
+  - 문장 토크나이저 개발 및 명사 추출
+  - 키워드 사전 구축
+  - 카테고리 분류 모뎅(Transformer, BERT) 구성
+  
 * 김영협  
   [![Tech Blog Badge](http://img.shields.io/badge/-Github-black?style=flat-square&logo=github&link=https://github.com/KimYoungHyeop)](https://github.com/KimYoungHyeop) [![Blog Badge](http://img.shields.io/badge/-Blog-EF2D5E?style=flat-square&logo=GitHub%20Sponsors&logoColor=white&link=https://blog.naver.com/kyh568)](https://blog.naver.com/kyh568)
+  
+  
+  - 웹 개발 및 디자인 구성
+  - 자동완성 기능 탐색
+  - 카테고리 분류 모델(BERT) 구성
 
 
 ## Project milestone
@@ -44,10 +83,13 @@
 - RestAPI, MongoDB
 
 
-## 크롤링을 통한 Tokenize and Extract nouns
-구글 크롤링을 통해 여러 단어가 조합된 조합어를 토큰화 및 명사 추출한다.  
+## 프로젝트 세부 동작
 
-### 1.셀레니움 객체를 생성해서 크롤링된 문장등을 가져온다.
+### 크롤링을 통한 Tokenizing and Extracting nouns
+구글 크롤링을 통해 여러 단어가 조합된 조합어를 토큰화 및 명사 추출한다.
+
+
+#### 1.셀레니움 객체를 생성해서 크롤링된 문장등을 가져온다.
 크롤링된 제목, 내용을 크롤링
 ```python
 searcher = GoogleSearcher()
@@ -70,7 +112,7 @@ searcher.search('도어밸트끼임수리')
 # ['도어', '수리', '수리', '벨트', '도어', '벨트', '도어', '끼임', '수리', '도어', '끼임', '수리', '도어', '벨트', '도어', '수리', '도어', '수리']
 ```
 
-### 2.크롤링된 결과와 n-gram, 자모 유사도를 바탕으로 조합을 만든다.
+#### 2.크롤링된 결과와 n-gram, 자모 유사도를 바탕으로 조합을 만든다.
 ```python
 s = '정지에서출발할때떨림발생건'
 searcher = GoogleSearcher()
@@ -86,7 +128,7 @@ create_continuous_likely_dict(searcher, s)
 #  10: [('발생건', 0)]}
 ```
 
-### 3.실제 토큰화가 가능한 모든 조합을 생성한다.
+#### 3.실제 토큰화가 가능한 모든 조합을 생성한다.
 ```python
 tokenize_all_case(searcher, '정지에서출발할때떨림발생건')
 
@@ -103,7 +145,7 @@ extract_nouns(google_searcher, '거제시외버스터미널')
 #  ('거제시외버스터미널')]
 ```
 
-### 4.동사,접속사,부사,조사,어미 등을 제거하여 명사만 추출한다.
+#### 4.동사,접속사,부사,조사,어미 등을 제거하여 명사만 추출한다.
 ```python
 extract_nouns(searcher, '정지에서출발할때떨림발생건')
 
@@ -111,16 +153,16 @@ extract_nouns(searcher, '정지에서출발할때떨림발생건')
 ```
 
 
-## Category Extraction & Recategorization
+### Category Extraction & Recategorization
 
 ![토큰화_과정](https://user-images.githubusercontent.com/59644774/146131448-15944e16-e5b1-47b2-a884-495b80134f9a.png)
 
 
-### 0. Preprocess & Separate Sentences
+#### 0. Preprocess & Separate Sentences
 
 전처리 후 \[SEP] token을 사용하여 문장을 의미 단위로 분리한다.
 
-### 1.  Tokenize with SentencePiece 
+#### 1.  Tokenize with SentencePiece 
 
 전문용어를 잘 분절하는 SentencePiece를 사용한다.  Corpus에 의존적이므로 일반적인 한국어 Corpus와 다른 분포를 가져도 subword 분절이 잘 이루어진다. 
 
@@ -135,7 +177,7 @@ vocab_file = spm_path + '/labeling.model'
 sp_0.load(vocab_file)
 ```
 
-### 2. Extract summarized sentences
+#### 2. Extract summarized sentences
 
 ```python
 # 단일 스트링에 대한 결과
@@ -155,7 +197,7 @@ len(label_set)
 # 9597개의 서로 다른 요약문을 얻었다
 ```
 
-### 3. Tokenize(split) & Detokenize(join) summarized results
+#### 3. Tokenize(split) & Detokenize(join) summarized results
 
 띄어쓰기에 대해 강건하게 만들기 위해 웹 크롤링을 통해 띄어쓰기를 수행한다.
 
@@ -177,7 +219,7 @@ detokenize_setences(['현장 방문 오작동 발견', '네비게이션 정상 �
 
 ```
 
-### 4. Clustering
+#### 4. Clustering
 
 의미가 유사한 요약문을 묶어 재분류 카테고리로 사용할 수 있는 핵심 label을 추출하고,  출현 빈도를 기준으로 필터링한다. 핵심 label 중 의미가 너무 포괄적이거나 불필요한 경우는 핵심 label이 될 수 없도록 한다.
 
@@ -207,7 +249,7 @@ print(new_cateory.keys())
 
 ![클러스터링_결과](https://user-images.githubusercontent.com/59644774/146131164-e7b30932-3423-424b-beaa-7086da75c2db.png)
 
-### 5. Recategorize with new category
+#### 5. Recategorize with new category
 
 신규 카테고리를 적용한다. 
 
