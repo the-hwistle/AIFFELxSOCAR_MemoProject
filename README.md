@@ -22,11 +22,13 @@
   
   
   - 팀장
-  - 단어장 DB 구성
-  - 크롤링 모듈 구현
-  - 자동완성 모듈 구현
-  - API 배포 및 개발
-  - 윕 페이지 개발 및 배포
+  - MongoDB를 이용한 단어장 구성
+  - API 개발 및 배포
+      - 웹 크롤링 모듈 구현
+      - 단어 자동완성 모듈 구현
+          - 크롤링 + LRNounsStructure
+  - Flask를 이용한 웹 개발 및 배포
+  - GCP 웹 서버 및 API 서버 구성
   
 * 윤세휘  
   [![Tech Blog Badge](http://img.shields.io/badge/-Github-black?style=flat-square&logo=github&link=https://github.com/Beatriz-Yun)](https://github.com/Beatriz-Yun)    [![Blog Badge](http://img.shields.io/badge/-Blog-EF2D5E?style=flat-square&logo=GitHub%20Sponsors&logoColor=white&link=https://beatriz-yun.github.io/)](https://beatriz-yun.github.io/)
